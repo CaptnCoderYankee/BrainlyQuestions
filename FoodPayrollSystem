@@ -1,0 +1,93 @@
+using System;
+
+namespace ConsoleApp5
+{
+    class Program
+    {
+        static float percentOfWeeklySales = 0;
+        public static float CalcCommission(int weeklySales)
+        {
+            percentOfWeeklySales = (2.8f * weeklySales) / 100;
+            return percentOfWeeklySales;
+        }
+        static void Main(string[] args)
+        {
+            float weeklyPay = 0;
+
+            Console.WriteLine("Enter Type of Worker\nWrite 1 for Manager\nWrite 2 for Hourly Worker\nWrite 3 for Commission Worker");
+            int typeOfWorker = Convert.ToInt32(Console.ReadLine());
+            float hoursOverTime;
+            float wagedOverTime = 0;
+            if(typeOfWorker == 3)
+            {
+                Console.WriteLine("Enter Gross Weekly Sales");
+                CalcCommission(Convert.ToInt32(Console.ReadLine()));
+                Console.WriteLine(percentOfWeeklySales);
+                weeklyPay = percentOfWeeklySales*250 + 400;
+                Console.WriteLine(weeklyPay);
+            }
+            switch (typeOfWorker)
+            {
+                default:
+                    Console.WriteLine("Enter using Numbered Codes");
+
+                    break;
+                //1960=(12.25*60)+(40*(12.25*2.5)
+                case 1:
+                    Console.WriteLine("Enter Hourly Wage");
+                    float workerswage = float.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter Hours Worked");
+                    float hoursWorked = float.Parse(Console.ReadLine());
+                    Console.WriteLine("Shift Manager");
+                    if(hoursWorked > 59)
+                    {
+                        
+                        hoursOverTime = hoursWorked - 60;
+                        hoursWorked = 60;
+                        wagedOverTime = hoursOverTime * (workerswage * 2.5f);
+                    }
+                    else
+                    {
+                        //Do Nothing
+                    }
+                    weeklyPay = workerswage * hoursWorked;
+                    if(wagedOverTime != 0)
+                    {
+                        weeklyPay = weeklyPay + wagedOverTime;
+                    }
+                    Console.WriteLine(weeklyPay);
+                    break;
+
+                case 2:
+                    Console.WriteLine("Enter Hourly Wage");
+                    workerswage = float.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter Hours Worked");
+                    hoursWorked = float.Parse(Console.ReadLine());
+                    Console.WriteLine("Hourly Worker");
+                    if (hoursWorked > 59)
+                    {
+                        hoursOverTime = hoursWorked - 60;
+                        hoursWorked = 60;
+                        wagedOverTime = hoursOverTime * (workerswage * 2.5f);
+                    }
+                    else
+                    {
+                        //Do Nothing
+                    }
+                    weeklyPay = workerswage * hoursWorked;
+                    if (wagedOverTime != 0)
+                    {
+                        weeklyPay = weeklyPay + wagedOverTime;
+                    }
+                    Console.WriteLine(weeklyPay);
+                    break;
+
+                case 3:
+                    Console.WriteLine("Commission Worker");
+                    weeklyPay = 400 + percentOfWeeklySales;
+                    break;
+            }
+        }
+
+    }
+}
