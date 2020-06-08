@@ -1,0 +1,26 @@
+numGuesses = 0
+
+userGuess = -1
+
+secretNum = 5
+
+name = input("Hello! What is your name?")
+
+while userGuess != secretNum:
+
+   userGuess = int(input("Guess a number between 1 and 20: "))
+
+   numGuesses = numGuesses + 1
+
+   if (userGuess < secretNum):
+
+       print("You guessed " + str(userGuess) + ". Too low.")
+
+   if (userGuess > secretNum):
+
+       print("You guessed " + str(userGuess) + ". Too high.")
+
+   if(userGuess == secretNum):
+
+       print("You guessed " + str(secretNum)+ ". Corret! "+"It took you " + str(numGuesses)+ " guesses.")
+
